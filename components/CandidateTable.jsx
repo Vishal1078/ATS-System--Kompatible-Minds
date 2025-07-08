@@ -1,30 +1,74 @@
 import React from "react";
 
+const tableStyle = {
+  width: "100%",
+  borderCollapse: "collapse",
+  fontSize: "14px",
+};
+
+const thStyle = {
+  backgroundColor: "#f2f2f2",
+  padding: "12px",
+  border: "1px solid #ddd",
+  textTransform: "uppercase",
+  color: "#333",
+};
+
+const tdStyle = {
+  padding: "10px",
+  border: "1px solid #ddd",
+};
+
+const rowHoverStyle = {
+  cursor: "pointer",
+};
+
 const CandidateTable = ({ candidates = [] }) => {
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Candidates</h2>
-      <div className="overflow-x-auto shadow rounded">
-        <table className="min-w-full bg-white border border-gray-200">
-          <thead className="bg-gray-100 text-gray-600 uppercase text-sm">
+    <div style={{ padding: "30px", background: "#f9f9f9", minHeight: "100vh" }}>
+      <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px", color: "black" }}>
+        Candidates
+      </h2>
+
+      <div style={{ overflowX: "auto", backgroundColor: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", borderRadius: "8px" }}>
+        <table style={tableStyle}>
+          <thead>
             <tr>
-              <th className="py-3 px-4 border-b">ID</th>
-              <th className="py-3 px-4 border-b">Name</th>
-              <th className="py-3 px-4 border-b">Email</th>
-              <th className="py-3 px-4 border-b">Phone</th>
-              <th className="py-3 px-4 border-b">Job Title</th>
+              <th style={thStyle}>ID</th>
+              <th style={thStyle}>Name</th>
+              <th style={thStyle}>Email</th>
+              <th style={thStyle}>Phone</th>
+              <th style={thStyle}>Job Title</th>
+              <th style={thStyle}>Status</th>
+              <th style={thStyle}>Notice</th>
+              <th style={thStyle}>Recruiter</th>
+              <th style={thStyle}>Source</th>
+              <th style={thStyle}>Expected Salary</th>
             </tr>
           </thead>
-          <tbody className="text-gray-700 text-sm">
-            {candidates.map((candidate) => (
-              <tr key={candidate.id} className="hover:bg-gray-50">
-                <td className="py-2 px-4 border-b">{candidate.id}</td>
-                <td className="py-2 px-4 border-b">{candidate.name}</td>
-                <td className="py-2 px-4 border-b">{candidate.email}</td>
-                <td className="py-2 px-4 border-b">{candidate.phone}</td>
-                <td className="py-2 px-4 border-b">{candidate.jobTitle}</td>
+          <tbody>
+            {candidates.length === 0 ? (
+              <tr>
+                <td colSpan="10" style={{ ...tdStyle, textAlign: "center", fontStyle: "italic", color: "#888" }}>
+                  No candidates found.
+                </td>
               </tr>
-            ))}
+            ) : (
+              candidates.map((c) => (
+                <tr key={c.id} style={rowHoverStyle}>
+                  <td style={tdStyle}>{c.id}</td>
+                  <td style={tdStyle}>{c.name}</td>
+                  <td style={tdStyle}>{c.email}</td>
+                  <td style={tdStyle}>{c.phone}</td>
+                  <td style={tdStyle}>{c.jobTitle}</td>
+                  <td style={tdStyle}>{c.status}</td>
+                  <td style={tdStyle}>{c.noticePeriod}</td>
+                  <td style={tdStyle}>{c.recruiter}</td>
+                  <td style={tdStyle}>{c.source}</td>
+                  <td style={tdStyle}>{c.expectedSalary}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

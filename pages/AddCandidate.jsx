@@ -15,12 +15,18 @@ const AddCandidate = ({ onAdd }) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onAdd({ id: Date.now(), ...formData });
-    navigate("/candidates");
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const fullName = `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim();
+  const newCandidate = {
+    id: Date.now(),
+    ...formData,
+    name: fullName, // 🔁 this makes the CandidateTable work
   };
+  onAdd(newCandidate);
+  navigate("/candidates");
+};
+
 
   return (
     <div className="form-container">

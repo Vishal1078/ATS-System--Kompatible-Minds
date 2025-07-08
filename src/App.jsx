@@ -35,7 +35,7 @@ function App() {
     <Router>
       <div style={{ display: 'flex', height: '100vh' }}>
         <Sidebar />
-        <div style={{ flex: 1, padding: '20px' }}>
+      <div style={{ flex: 1, minHeight: '100vh', padding: 0, backgroundColor: '#f9fafb' }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/candidates" element={<CandidateTable candidates={candidates} />} />

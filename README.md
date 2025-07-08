@@ -1,12 +1,27 @@
-# React + Vite
+# 🧑‍💼 ATS System - Applicant Tracking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web-based Applicant Tracking System built with **React** and **JavaScript** that helps HR and recruitment teams manage candidates, jobs, and clients efficiently.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 📋 View and manage candidate listings
+- ➕ Add new candidates via a detailed form
+- 🔍 Track candidate status, job title, contact, experience, salary, and more
+- 🧭 Clean sidebar navigation (Clients, Jobs, Candidates, Settings)
+- 💡 Modular component-based structure
+- 🎨 Clean and responsive UI (CSS only — no Tailwind)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+| Frontend     | Tools Used            |
+|--------------|------------------------|
+| Framework    | React (with React Router) |
+| Language     | JavaScript             |
+| Styling      | Plain CSS              |
+| Build Tool   | Vite                   |
+
+---

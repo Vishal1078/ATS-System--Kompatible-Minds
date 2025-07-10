@@ -6,6 +6,8 @@ import Sidebar from '../components/Sidebar';
 import CandidateTable from '../components/CandidateTable';
 import HomePage from '../pages/HomePage';
 import AddCandidate from '../pages/AddCandidate';
+import JobPage from '../pages/JobPage';
+import jobPosting from '../pages/jobPosting';
 
 const initialCandidates = [
   {
@@ -40,6 +42,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/candidates" element={<CandidateTable candidates={candidates} />} />
             <Route path="/add-candidate" element={<AddCandidate onAdd={addCandidate} />} />
+            <Route path="/jobs" element={<JobPage />} />
+            <Route path="/jobPosting" element={<jobPosting />} />
             {/* Add more routes as needed */}
           </Routes>
         </div>

@@ -26,11 +26,33 @@ const rowHoverStyle = {
 const CandidateTable = ({ candidates = [] }) => {
   return (
     <div style={{ padding: "30px", background: "#f9f9f9", minHeight: "100vh" }}>
-      <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px", color: "black" }}>
-        Candidates
-      </h2>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "20px",
+    }}
+  >
+    <h2 style={{ fontSize: "24px", fontWeight: "bold", color: "black" }}>
+      Candidates
+    </h2>
+    <a
+      href="/add-candidate"
+      style={{
+        backgroundColor: "#4CAF50",
+        color: "white",
+        padding: "10px 16px",
+        borderRadius: "5px",
+        textDecoration: "none",
+        fontWeight: "bold",
+      }}
+    >
+      + Add Candidate
+    </a>
+  </div>
 
-      <div style={{ overflowX: "auto", backgroundColor: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", borderRadius: "8px" }}>
+      <div style={{ overflowX: "auto", backgroundColor: "grey", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", borderRadius: "8px" }}>
         <table style={tableStyle}>
           <thead>
             <tr>

@@ -16,6 +16,7 @@ const Sidebar = () => {
         <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
         <Link to="/clients" style={{ color: 'white', textDecoration: 'none' }}>Clients</Link>
         <Link to="/jobs" style={{ color: 'white', textDecoration: 'none' }}>Jobs</Link>
+        <Link to="/JobPosting" style={{ color: 'white', textDecoration: 'none' }}>Job Listings</Link>
         <Link to="/candidates" style={{ color: 'white', textDecoration: 'none' }}>Candidates</Link>
         <Link to="/settings" style={{ color: 'white', textDecoration: 'none' }}>Settings</Link>
       </nav>

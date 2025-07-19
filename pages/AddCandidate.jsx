@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddCandidate.css"; 
 
-const AddCandidate = ({ onAdd }) => {
+const AddCandidate = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "", middleName: "", lastName: "", status: "", noticePeriod: "",
@@ -15,17 +15,34 @@ const AddCandidate = ({ onAdd }) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-const handleSubmit = (e) => {
+;const handleSubmit = async (e) => {
   e.preventDefault();
   const fullName = `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim();
-  const newCandidate = {
-    id: Date.now(),
+
+  const candidateData = {
     ...formData,
-    name: fullName, // 🔁 this makes the CandidateTable work
+    name: fullName,
   };
-  onAdd(newCandidate);
-  navigate("/candidates");
+
+  try {
+    const res = await fetch("http://localhost:5000/api/candidates/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(candidateData),
+    });
+
+    if (!res.ok) throw new Error("Failed to add candidate");
+
+    alert("✅ Candidate added successfully!");
+    navigate("/candidates");
+  } catch (err) {
+    console.error("❌ Error submitting candidate:", err);
+    alert("Failed to submit candidate. Please check backend connection.");
+  }
 };
+
 
 
   return (

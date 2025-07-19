@@ -1,13 +1,15 @@
-import React ,{useState} from 'react';
-
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Sidebar from '../components/Sidebar';
 import CandidateTable from '../components/CandidateTable';
 import HomePage from '../pages/HomePage';
 import AddCandidate from '../pages/AddCandidate';
 import JobPage from '../pages/JobPage';
-import jobPosting from '../pages/jobPosting';
+import JobPosting from '../pages/JobPosting';
+import ClientsPage from '../pages/ClientsPage';
+
+import './App.css'; // ✅ Make sure this contains layout styles
 
 const initialCandidates = [
   {
@@ -26,27 +28,27 @@ const initialCandidates = [
   },
 ];
 
-
 function App() {
-   const [candidates, setCandidates] = useState(initialCandidates);
+  const [candidates, setCandidates] = useState(initialCandidates);
 
   const addCandidate = (newCandidate) => {
     setCandidates([...candidates, newCandidate]);
   };
+
   return (
     <Router>
-      <div style={{ display: 'flex', height: '100vh' }}>
+      <div className="app-container">
         <Sidebar />
-      <div style={{ flex: 1, minHeight: '100vh', padding: 0, backgroundColor: '#f9fafb' }}>
+        <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/candidates" element={<CandidateTable candidates={candidates} />} />
             <Route path="/add-candidate" element={<AddCandidate onAdd={addCandidate} />} />
             <Route path="/jobs" element={<JobPage />} />
-            <Route path="/jobPosting" element={<jobPosting />} />
-            {/* Add more routes as needed */}
+            <Route path="/JobPosting" element={<JobPosting />} />
+            <Route path="/clients" element={<ClientsPage />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </Router>
   );

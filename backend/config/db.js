@@ -1,4 +1,3 @@
-// backend/db.js
 import sql from 'mssql';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -10,6 +9,7 @@ const config = {
   database: process.env.DB_DATABASE,
   options: {
     encrypt: process.env.DB_ENCRYPT === 'true',
+    trustServerCertificate: true // Optional: add if you're using self-signed cert
   },
 };
 

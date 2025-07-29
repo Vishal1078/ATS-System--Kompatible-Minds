@@ -1,5 +1,5 @@
 // backend/controllers/candidateController.js
-import { poolPromise, sql } from '../db.js';
+import { poolPromise, sql } from '../config/db.js';
 
 export const addCandidate = async (req, res) => {
   try {

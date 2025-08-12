@@ -1,7 +1,7 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./clientForm.css";
 
-const ClientForm = () => {
+const ClientForm = ({ onClientAdded }) => {
   const [formData, setFormData] = useState({
     name: '',
     contactName: '',
@@ -10,26 +10,43 @@ const ClientForm = () => {
     createdDate: new Date().toISOString().slice(0, 10),
   });
 
- const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };    
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Client submitted:', formData);
-    alert('Client added successfully!');
-    setFormData({
-      name: '',
-      contactName: '',
-      email: '',
-      phone: '',
-      createdDate: new Date().toISOString().slice(0, 10),
-    });
   };
 
- return (
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('http://localhost:5000/api/clients/add-client', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to add client');
+      }
+
+      alert('✅ Client added successfully!');
+      setFormData({
+        name: '',
+        contactName: '',
+        email: '',
+        phone: '',
+        createdDate: new Date().toISOString().slice(0, 10),
+      });
+
+      if (onClientAdded) {
+        onClientAdded(); // Optional callback to refresh list
+      }
+    } catch (err) {
+      console.error('Error adding client:', err);
+      alert('❌ Error adding client');
+    }
+  };
+
+  return (
     <div className="client-form-container">
       <h2>Add New Client</h2>
       <form onSubmit={handleSubmit} className="client-form">
@@ -65,5 +82,3 @@ const ClientForm = () => {
 };
 
 export default ClientForm;
-
-

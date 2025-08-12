@@ -1,13 +1,12 @@
 import express from 'express';
-import sql from 'mssql';
-import dbConfig from '../config/db.js';
+import { poolPromise, sql } from '../config/db.js';
 
 const router = express.Router();
 
-// Get all candidates
+// ✅ GET all candidates
 router.get('/', async (req, res) => {
   try {
-    const pool = await sql.connect(dbConfig);
+    const pool = await poolPromise;
     const result = await pool.request().query('SELECT * FROM Candidates');
     res.json(result.recordset);
   } catch (error) {
@@ -16,12 +15,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Delete candidate by ID
+// ✅ DELETE candidate by ID
 router.delete('/:id', async (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   try {
-    const pool = await sql.connect(dbConfig);
-    await pool.request().input('id', sql.Int, id)
+    const pool = await poolPromise;
+    await pool.request()
+      .input('id', sql.Int, id)
       .query('DELETE FROM Candidates WHERE id = @id');
     res.status(200).send('Candidate deleted');
   } catch (error) {

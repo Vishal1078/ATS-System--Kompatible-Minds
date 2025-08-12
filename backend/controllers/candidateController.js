@@ -51,3 +51,15 @@ export const addCandidate = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// ✅ Get all candidates
+export const getCandidates = async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().query('SELECT * FROM Candidates');
+    res.json(result.recordset);
+  } catch (error) {
+    console.error('Error fetching candidates:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
